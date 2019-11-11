@@ -16,7 +16,7 @@ import javax.swing.ImageIcon;
 public class Oleo {
     private Image imagem;
     private int x,y;
-    private int largura, altura;
+    private int largura, altura; 
     private boolean isVisivel;
 
     private static final int LARGURA_TELA = 500;
@@ -27,7 +27,7 @@ public class Oleo {
         this.x = x;
         this.y = y;
 
-        ImageIcon referencia = new ImageIcon("oleo.png");
+        ImageIcon referencia = new ImageIcon("lixo.png");
         imagem = referencia.getImage(); 
 
         this.largura = imagem.getWidth(null);
@@ -63,6 +63,6 @@ public class Oleo {
         return y;
     }
     public Rectangle getBounds(){
-        return new Rectangle(x,y, largura, altura);
+        return new Rectangle(x, y, largura, altura);
     }
 }

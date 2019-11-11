@@ -28,6 +28,7 @@ public class Turtle {
     public Turtle(){
         ImageIcon referencia = new ImageIcon("turtle.png");
         imagem = referencia.getImage();
+        
         altura = imagem.getHeight(null);
         largura = imagem.getWidth(null);
         
@@ -74,7 +75,7 @@ public class Turtle {
         return imagem;
     }
     public void soltarBolhas(){
-        this.bolhas.add(new Bolha(x + largura, y  + altura /2));
+        this.bolhas.add(new Bolha(x + largura, y  + altura /8));
     }
     
     public void keyPressed(KeyEvent tecla){

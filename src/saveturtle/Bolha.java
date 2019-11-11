@@ -16,7 +16,7 @@ import javax.swing.ImageIcon;
 public class Bolha {
     
     private Image imagem;
-    private int x,y;
+    private int x, y;
     private int largura, altura;
     private boolean isVisivel;
 
@@ -32,9 +32,8 @@ public class Bolha {
         imagem = referencia.getImage(); 
 
         this.largura = imagem.getWidth(null);
-        this.altura = imagem.getHeight(null);
+        this.altura = imagem.getHeight(null);      
 
-        
         isVisivel = true;
 
     }
@@ -65,6 +64,6 @@ public class Bolha {
         return y;
     }
     public Rectangle getBounds(){
-        return new Rectangle(x,y, largura, altura);
+        return new Rectangle(x, y, largura, altura);
     }
 }
