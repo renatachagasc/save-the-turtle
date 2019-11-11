@@ -6,6 +6,7 @@
 package saveturtle;
 
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,7 @@ public class Turtle {
     private int x, y;
     private int dx, dy;
     private int altura, largura;    
+    private boolean isVisivel;
 
     private Image imagem;
     
@@ -28,7 +30,8 @@ public class Turtle {
     public Turtle(){
         ImageIcon referencia = new ImageIcon("turtle.png");
         imagem = referencia.getImage();
-        
+        isVisivel = true;
+
         altura = imagem.getHeight(null);
         largura = imagem.getWidth(null);
         
@@ -117,6 +120,15 @@ public class Turtle {
             dx = 0;            
         }
         
+    }
+
+    Rectangle getBounds() {
+        return new Rectangle(x, y, largura, altura);
+    }
+
+
+        public void setVisivel (boolean isVisivel){
+        this.isVisivel = isVisivel;
     }
 }
 

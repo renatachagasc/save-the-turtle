@@ -21,13 +21,25 @@ public class Oleo {
 
     private static final int LARGURA_TELA = 500;
     private static final int VELOCIDADE = 1;
+    
+    
+    private static int contador = 0;
 
     public Oleo(int x, int y){
         
         this.x = x;
         this.y = y;
+        
+        ImageIcon referencia;
+        System.out.println(contador);
+        if (contador++ % 3 == 0){
+           referencia = new ImageIcon("lixo.png");
+        }else{
+           referencia = new ImageIcon("gpet.png");  
 
-        ImageIcon referencia = new ImageIcon("lixo.png");
+        }
+        
+        
         imagem = referencia.getImage(); 
 
         this.largura = imagem.getWidth(null);
