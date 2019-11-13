@@ -20,7 +20,7 @@ public class Oleo {
     private boolean isVisivel;
 
     private static final int LARGURA_TELA = 500;
-    private static final int VELOCIDADE = 2;
+    private static final int VELOCIDADE = 1;
     
     
     private static int contador = 0;
