@@ -13,7 +13,7 @@ import javax.swing.ImageIcon;
  *
  * @author 20171148060029
  */
-public class Oleo {
+public class LixoMaritimo {
     private Image imagem;
     private int x,y;
     private int largura, altura; 
@@ -25,7 +25,7 @@ public class Oleo {
     
     private static int contador = 0;
 
-    public Oleo(int x, int y){
+    public LixoMaritimo(int x, int y){
         
         this.x = x;
         this.y = y;

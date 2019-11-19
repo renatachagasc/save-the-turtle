@@ -32,7 +32,7 @@ public class Fase extends JPanel implements ActionListener {
 
     private boolean emJogo;
 
-    private List<Oleo> oleos;
+    private List<LixoMaritimo> oleos;
 
     private int[][] coordenadas = {
         {2380, 29}, {2600, 59}, {1380, 89},
@@ -63,10 +63,10 @@ public class Fase extends JPanel implements ActionListener {
     }
 
     public void derramarOleo() {
-        oleos = new ArrayList<Oleo>();
+        oleos = new ArrayList<LixoMaritimo>();
 
         for (int i = 0; i < coordenadas.length; i++) {
-            oleos.add(new Oleo(coordenadas[i][0], coordenadas[i][1]));
+            oleos.add(new LixoMaritimo(coordenadas[i][0], coordenadas[i][1]));
         }
     }
 
@@ -86,7 +86,7 @@ public class Fase extends JPanel implements ActionListener {
                 graficos.drawImage(b.getImagem(), b.getX(), b.getY(), this);
             }
             for (int i = 0; i < oleos.size(); i++) {
-                Oleo o = oleos.get(i);
+                LixoMaritimo o = oleos.get(i);
                 graficos.drawImage(o.getImagem(), o.getX(), o.getY(), this);
             }
             
@@ -119,7 +119,7 @@ public class Fase extends JPanel implements ActionListener {
             }
         }
         for (int i = 0; i < oleos.size(); i++) {
-            Oleo o = oleos.get(i);
+            LixoMaritimo o = oleos.get(i);
             if (o.isVisivel()) {
                 o.movimentar();
             } else {
@@ -138,7 +138,7 @@ public class Fase extends JPanel implements ActionListener {
         Rectangle formBolha;
 
         for (int i = 0; i < oleos.size(); i++) {
-            Oleo tempOleo = oleos.get(i);
+            LixoMaritimo tempOleo = oleos.get(i);
             formOleo = tempOleo.getBounds();
 
             if (formTurtle.intersects(formOleo)) {
@@ -158,7 +158,7 @@ public class Fase extends JPanel implements ActionListener {
 
             for (int j = 0; j < oleos.size(); j++) {
 
-                Oleo tempOleo = oleos.get(j);
+                LixoMaritimo tempOleo = oleos.get(j);
                 formOleo = tempOleo.getBounds();
 
                 if (formBolha.intersects(formOleo)) {
