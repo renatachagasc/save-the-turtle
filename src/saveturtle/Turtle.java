@@ -28,7 +28,7 @@ public class Turtle {
 
     
     public Turtle(){
-        ImageIcon referencia = new ImageIcon("turtle.png");
+        ImageIcon referencia = new ImageIcon("giphy.gif");
         imagem = referencia.getImage();
         isVisivel = true;
 

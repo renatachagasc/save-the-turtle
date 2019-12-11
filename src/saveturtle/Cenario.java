@@ -24,27 +24,42 @@ import javax.swing.Timer;
  *
  * @author 20171148060029
  */
-public class Fase extends JPanel implements ActionListener {
+public class Cenario extends JPanel implements ActionListener {
 
     private Image background;
     private Turtle turtle;
     private Timer timer;
 
     private boolean emJogo;
+    private boolean venceu;
 
-    private List<LixoMaritimo> oleos;
+    private List<LixoMaritimo> lixos;
 
     private int[][] coordenadas = {
+        {2380, 29}, {2600, 59}, {1380, 89},
+        {780, 109}, {580, 139}, {880, 239}, {790, 259},
+        {860, 20}, {740, 180}, {820, 128}, {490, 170}, {700, 30},
+        {920, 300}, {856, 328}, {456, 320},
         {2380, 29}, {2600, 59}, {1380, 89},
         {780, 109}, {580, 139}, {880, 239}, {790, 259},
         {760, 50}, {790, 150}, {1980, 209}, {560, 45}, {510, 70},
         {930, 159}, {590, 80}, {530, 60}, {940, 59}, {990, 30},
         {920, 200}, {900, 259}, {660, 50}, {540, 90}, {810, 220},
         {860, 20}, {740, 180}, {820, 128}, {490, 170}, {700, 30},
-        {920, 300}, {856, 328}, {456, 320}
-    };
+        {920, 300}, {856, 328}, {456, 320},
+        {2380, 29}, {2600, 59}, {1380, 89},
+        {780, 109}, {580, 139}, {880, 239}, {790, 259},
+        {860, 20}, {740, 180}, {820, 128}, {490, 170}, {700, 30},
+        {920, 300}, {856, 328}, {456, 320},
+        {2380, 29}, {2600, 59}, {1380, 89},
+        {780, 109}, {580, 139}, {880, 239}, {790, 259},
+        {760, 50}, {790, 150}, {1980, 209}, {560, 45}, {510, 70},
+        {930, 159}, {590, 80}, {530, 60}, {940, 59}, {990, 30},
+        {920, 200}, {900, 259}, {660, 50}, {540, 90}, {810, 220},
+        {860, 20}, {740, 180}, {820, 128}, {490, 170}, {700, 30},
+        {920, 300}, {856, 328}, {456, 320},};
 
-    public Fase() {
+    public Cenario() {
 
         setFocusable(true);
         setDoubleBuffered(true);
@@ -55,18 +70,18 @@ public class Fase extends JPanel implements ActionListener {
         turtle = new Turtle();
 
         emJogo = true;
-
-       derramarOleo();
+        venceu = true;
+        recolherLixo();
 
         timer = new Timer(5, this);
         timer.start();
     }
 
-    public void derramarOleo() {
-        oleos = new ArrayList<LixoMaritimo>();
+    public void recolherLixo() {
+        lixos = new ArrayList<LixoMaritimo>();
 
         for (int i = 0; i < coordenadas.length; i++) {
-            oleos.add(new LixoMaritimo(coordenadas[i][0], coordenadas[i][1]));
+            lixos.add(new LixoMaritimo(coordenadas[i][0], coordenadas[i][1]));
         }
     }
 
@@ -85,27 +100,24 @@ public class Fase extends JPanel implements ActionListener {
                 Bolha b = (Bolha) bolhas.get(i);
                 graficos.drawImage(b.getImagem(), b.getX(), b.getY(), this);
             }
-            for (int i = 0; i < oleos.size(); i++) {
-                LixoMaritimo o = oleos.get(i);
+            for (int i = 0; i < lixos.size(); i++) {
+                LixoMaritimo o = lixos.get(i);
                 graficos.drawImage(o.getImagem(), o.getX(), o.getY(), this);
             }
-            
-            graficos.setColor(Color.WHITE);            
-            graficos.drawString("LIXO: " + oleos.size(), 5, 15);
-        }else{
+
+        } else {
             ImageIcon fimJogo = new ImageIcon("gover_restart.png");
-            
-            graficos.drawImage(fimJogo.getImage(), 0,0, this);
-            
+            graficos.drawImage(fimJogo.getImage(), 0, 0, this);
+
         }
-        
+
         g.dispose();
     }
 
     @Override
     public void actionPerformed(ActionEvent arg0) {
 
-        if (oleos.size() == 0) {
+        if (lixos.size() == 0) {
             emJogo = false;
         }
 
@@ -118,12 +130,12 @@ public class Fase extends JPanel implements ActionListener {
                 bolhas.remove(i);
             }
         }
-        for (int i = 0; i < oleos.size(); i++) {
-            LixoMaritimo o = oleos.get(i);
+        for (int i = 0; i < lixos.size(); i++) {
+            LixoMaritimo o = lixos.get(i);
             if (o.isVisivel()) {
                 o.movimentar();
             } else {
-                oleos.remove(i);
+                lixos.remove(i);
             }
         }
         turtle.movimentar();
@@ -137,8 +149,8 @@ public class Fase extends JPanel implements ActionListener {
         Rectangle formOleo;
         Rectangle formBolha;
 
-        for (int i = 0; i < oleos.size(); i++) {
-            LixoMaritimo tempOleo = oleos.get(i);
+        for (int i = 0; i < lixos.size(); i++) {
+            LixoMaritimo tempOleo = lixos.get(i);
             formOleo = tempOleo.getBounds();
 
             if (formTurtle.intersects(formOleo)) {
@@ -156,9 +168,9 @@ public class Fase extends JPanel implements ActionListener {
             Bolha tempBolha = bolhas.get(i);
             formBolha = tempBolha.getBounds();
 
-            for (int j = 0; j < oleos.size(); j++) {
+            for (int j = 0; j < lixos.size(); j++) {
 
-                LixoMaritimo tempOleo = oleos.get(j);
+                LixoMaritimo tempOleo = lixos.get(j);
                 formOleo = tempOleo.getBounds();
 
                 if (formBolha.intersects(formOleo)) {
@@ -172,14 +184,15 @@ public class Fase extends JPanel implements ActionListener {
     private class TecladoAdapter extends KeyAdapter {
 
         @Override
-        public void keyPressed(KeyEvent e) {            
-            if(e.getKeyCode() == KeyEvent.VK_ENTER){
+        public void keyPressed(KeyEvent e) {
+            if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                 emJogo = true;
                 turtle = new Turtle();
-                derramarOleo();
-            }            
+                recolherLixo();
+            }
             turtle.keyPressed(e);
         }
+
         @Override
         public void keyReleased(KeyEvent e) {
             turtle.keyReleased(e);

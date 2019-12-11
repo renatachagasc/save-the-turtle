@@ -14,7 +14,7 @@ import javax.swing.JFrame;
 public class ContainerDeJanelas extends JFrame{
     public ContainerDeJanelas(){
         
-        add(new Fase());
+        add(new Cenario());
         setTitle("Save The Turtle");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(600, 400);
