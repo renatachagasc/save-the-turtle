@@ -71,6 +71,7 @@ public class Cenario extends JPanel implements ActionListener {
 
         emJogo = true;
         venceu = true;
+        
         recolherLixo();
 
         timer = new Timer(5, this);
@@ -146,14 +147,14 @@ public class Cenario extends JPanel implements ActionListener {
     public void checarColisoes() {
 
         Rectangle formTurtle = turtle.getBounds();
-        Rectangle formOleo;
+        Rectangle formLixo;
         Rectangle formBolha;
 
         for (int i = 0; i < lixos.size(); i++) {
             LixoMaritimo tempOleo = lixos.get(i);
-            formOleo = tempOleo.getBounds();
+            formLixo = tempOleo.getBounds();
 
-            if (formTurtle.intersects(formOleo)) {
+            if (formTurtle.intersects(formLixo)) {
 
                 turtle.setVisivel(false);
                 tempOleo.setVisivel(false);
@@ -170,11 +171,11 @@ public class Cenario extends JPanel implements ActionListener {
 
             for (int j = 0; j < lixos.size(); j++) {
 
-                LixoMaritimo tempOleo = lixos.get(j);
-                formOleo = tempOleo.getBounds();
+                LixoMaritimo tempLixo = lixos.get(j);
+                formLixo = tempLixo.getBounds();
 
-                if (formBolha.intersects(formOleo)) {
-                    tempOleo.setVisivel(false);
+                if (formBolha.intersects(formLixo)) {
+                    tempLixo.setVisivel(false);
                     tempBolha.setVisivel(false);
                 }
             }
