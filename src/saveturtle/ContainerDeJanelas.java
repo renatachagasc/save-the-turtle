@@ -22,9 +22,5 @@ public class ContainerDeJanelas extends JFrame{
         setResizable(false);
         setVisible(true);
         
-    }
-//    public static void main(String[]args){
-//        new ContainerDeJanelas();
-//    }
-    
+    }    
 }

@@ -17,118 +17,116 @@ import javax.swing.ImageIcon;
  * @author 20171148060029
  */
 public class Turtle {
+
     private int x, y;
     private int dx, dy;
-    private int altura, largura;    
+    private int altura, largura;
     private boolean isVisivel;
 
     private Image imagem;
-    
+
     private List<Bolha> bolhas;
 
-    
-    public Turtle(){
+    public Turtle() {
         ImageIcon referencia = new ImageIcon("giphy.gif");
         imagem = referencia.getImage();
         isVisivel = true;
 
         altura = imagem.getHeight(null);
         largura = imagem.getWidth(null);
-        
-        bolhas = new ArrayList<Bolha>();        
-        
+
+        bolhas = new ArrayList<Bolha>();
+
         this.x = 100;
         this.y = 100;
-        
+
     }
 
     public List<Bolha> getBolhas() {
         return bolhas;
     }
-    
-    public void movimentar(){
+
+    public void movimentar() {
         x += dx; // 1 e 462
         y += dy; // 1 e 340
 
-        if(this.x < 1){
+        if (this.x < 1) {
             x = 1;
         }
-        if(this.x > 525){
+        if (this.x > 525) {
             x = 525;
         }
-        if(this.y < 1){
+        if (this.y < 1) {
             y = 1;
         }
-        if(this.y > 320){
+        if (this.y > 320) {
             y = 320;
         }
     }
-    
+
     public int getX() {
         return x;
     }
 
-    
     public int getY() {
         return y;
     }
 
-    
     public Image getImagem() {
         return imagem;
     }
-    public void soltarBolhas(){
-        this.bolhas.add(new Bolha(x + largura, y  + altura /8));
+
+    public void soltarBolhas() {
+        this.bolhas.add(new Bolha(x + largura, y + altura / 8));
     }
-    
-    public void keyPressed(KeyEvent tecla){
-        
+
+    public void keyPressed(KeyEvent tecla) {
+
         int codigo = tecla.getKeyCode();
-        
-        if (codigo == KeyEvent.VK_SPACE){
+
+        if (codigo == KeyEvent.VK_SPACE) {
             soltarBolhas();
         }
-        
-        if (codigo == KeyEvent.VK_UP){
-            dy = -1;            
+
+        if (codigo == KeyEvent.VK_UP) {
+            dy = -1;
         }
-        if (codigo == KeyEvent.VK_DOWN){
-            dy = 1;            
+        if (codigo == KeyEvent.VK_DOWN) {
+            dy = 1;
         }
-        if (codigo == KeyEvent.VK_LEFT){
-            dx = -1;            
+        if (codigo == KeyEvent.VK_LEFT) {
+            dx = -1;
         }
-        if (codigo == KeyEvent.VK_RIGHT){
-            dx = 1;            
+        if (codigo == KeyEvent.VK_RIGHT) {
+            dx = 1;
         }
-        
+
     }
-        public void keyReleased(KeyEvent tecla){
-            
+
+    public void keyReleased(KeyEvent tecla) {
+
         int codigo = tecla.getKeyCode();
-        
-        if (codigo == KeyEvent.VK_UP){
-            dy = 0;            
+
+        if (codigo == KeyEvent.VK_UP) {
+            dy = 0;
         }
-        if (codigo == KeyEvent.VK_DOWN){
-            dy = 0;            
+        if (codigo == KeyEvent.VK_DOWN) {
+            dy = 0;
         }
-        if (codigo == KeyEvent.VK_LEFT){
-            dx = 0;            
+        if (codigo == KeyEvent.VK_LEFT) {
+            dx = 0;
         }
-        if (codigo == KeyEvent.VK_RIGHT){
-            dx = 0;            
+        if (codigo == KeyEvent.VK_RIGHT) {
+            dx = 0;
         }
-        
+
     }
 
     Rectangle getBounds() {
         return new Rectangle(x, y, largura, altura);
     }
 
-
-        public void setVisivel (boolean isVisivel){
+    public void setVisivel(boolean isVisivel) {
         this.isVisivel = isVisivel;
     }
 }
-
